@@ -1,22 +1,17 @@
-
-
-
-//First Workflow
-
-name: First Workflow
+name: First GitHub Action
 
 on:
-  - push
+  push:
+    branches:
+      - main
 
-Jobs:
-  First_job:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Welcome Message
-          run: echo "My first GitHun Actions Job"
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-        - name: List Files
-          run: ls
-        
-        - name: Read File
-          run: cat dockerfile
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Print Hello World
+        run: echo "Hello, World!"
